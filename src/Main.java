@@ -35,8 +35,11 @@ public class Main {
                 Progression.gameStart(Color);
                 Progression.cardsHaveAppeared(Color);
 
+                //* Loop principal do jogo */
                 while (currentStage < Enemy.length) {
+                        //* Percorre os n inimigos do jogo */
                         for (int i = 0; i < Enemy.length; i++) {
+
                                 Global.showGlobalData();
 
                                 System.out.println(
@@ -48,17 +51,19 @@ public class Main {
                                         Progression.enemyHasBeenFound(Color);
                                 }
 
-                                System.out.println("\nVocê colidiu com o <" + Enemy[i].name
+                                System.out.println("\nVocê colidiu com o <" + Enemy[i].getName()
                                                 + "> e a batalha foi iniciada!");
 
                                 System.out.println(Color.setColor("red",
-                                                "\nVida do <" + Enemy[i].name + ">: " + Enemy[i].health));
+                                                "\nVida do <" + Enemy[i].getName() + ">: " + Enemy[i].getHealth()));
                                 System.out.println(Color.setColor("green",
-                                                "Poder do <" + Enemy[i].name + ">: " + Enemy[i].damage));
+                                                "Poder do <" + Enemy[i].getName() + ">: " + Enemy[i].getDamage()));
 
                                 Thread.sleep(3000);
 
-                                while (Enemy[i].health > 0) {
+                                //* Enquanto o inimigo n possuir vida, realiza o loop */
+                                while (Enemy[i].getHealth() > 0) {
+                                        //* Enquanto o jogador não utilizar suas 3 cartas, realiza o loop */
                                         while (Global.usedCards < 3) {
                                                 System.out.println(
                                                                 "\nVocê possui as seguintes cartas em suas mãos: \n"
@@ -84,23 +89,23 @@ public class Main {
 
                                                 Thread.sleep(1000);
                                         }
-
+ 
                                         Global.showGlobalData();
+                                        //Enemy[i].getHealth() -= Global.finalDamage;
+                                        Enemy[i].setHealth(Enemy[i].getHealth() - Global.finalDamage);
 
-                                        Enemy[i].health -= Global.finalDamage;
-
-                                        if (Enemy[i].health <= 0) {
+                                        if (Enemy[i].getHealth() <= 0) {
                                                 System.out.println(
                                                                 "\n[!] Você utilizou todas as cartas possíveis e seus cavaleiros golpearam o inimigo.");
 
                                                 Thread.sleep(3000);
 
-                                                System.out.println("\n[!] O <" + Enemy[i].name + "> sofreu ["
+                                                System.out.println("\n[!] O <" + Enemy[i].getName() + "> sofreu ["
                                                                 + Global.finalDamage + "] de dano!");
 
                                                 Thread.sleep(3000);
 
-                                                if (Enemy[4].health <= 0) {
+                                                if (Enemy[4].getHealth() <= 0) {
                                                         Global.score += Global.finalDamage * 1.5;
 
                                                         Progression.victoryAchieved(Global, Color);
@@ -129,18 +134,18 @@ public class Main {
 
                                                 Thread.sleep(3000);
 
-                                                System.out.println("\n[!] O <" + Enemy[i].name + "> sofreu [" +
+                                                System.out.println("\n[!] O <" + Enemy[i].getName() + "> sofreu [" +
                                                                 Global.finalDamage
-                                                                + "] de dano, mas ainda possui [" + Enemy[i].health
+                                                                + "] de dano, mas ainda possui [" + Enemy[i].getHealth()
                                                                 + "] de vida!");
 
                                                 Thread.sleep(3000);
 
-                                                Global.playerHealth -= Enemy[i].damage;
+                                                Global.playerHealth -= Enemy[i].getDamage();
 
-                                                System.out.println(Color.setColor("yellow", "\n[!] O <" + Enemy[i].name
+                                                System.out.println(Color.setColor("yellow", "\n[!] O <" + Enemy[i].getName()
                                                                 + "> o ataca, causando ["
-                                                                + Enemy[i].damage + "] de dano ao jogador!"));
+                                                                + Enemy[i].getDamage() + "] de dano ao jogador!"));
 
                                                 Thread.sleep(3000);
 
