@@ -56,7 +56,7 @@ public class Main {
                                 System.out.println(Color.setColor("green",
                                                 "Poder do <" + Enemy[i].getName() + ">: " + Enemy[i].getDamage()));
 
-                                // Thread.sleep(3000);
+                                Thread.sleep(3000);
 
                                 // Enquanto o inimigo n possuir vida, realiza o loop
                                 while (Enemy[i].getHealth() > 0) {
@@ -81,10 +81,7 @@ public class Main {
                                                 System.out.println("\n" + Hand.chosenCard(userChoice).getDescription());
 
                                                 Hand.chosenCard(userChoice).useCard(userChoice, Global);
-
                                                 Hand.useCard(userChoice, Global);
-
-                                                System.out.println("Cartas usadas: " + Global.getUsedCards());
 
                                                 Thread.sleep(1000);
                                         }
@@ -92,7 +89,7 @@ public class Main {
                                         Global.showGlobalData();
                                         Enemy[i].setHealth(Enemy[i].getHealth() - Global.getFinalDamage());
 
-                                        // Se a vida do inimigo for igual ou menor a 0, finaliza o andar atual
+                                        // Se a vida do inimigo for menor ou igual a 0, finaliza o andar atual
                                         if (Enemy[i].getHealth() <= 0) {
                                                 System.out.println(
                                                                 "\n[!] Você utilizou todas as cartas possíveis e seus cavaleiros golpearam o inimigo.");
@@ -105,7 +102,6 @@ public class Main {
                                                 Thread.sleep(3000);
 
                                                 if (Enemy[4].getHealth() <= 0) {
-                                                        // Global.score += Global.finalDamage * 1.5;
                                                         Global.setScore(Global.getScore()
                                                                         + Global.getFinalDamage() * 2);
                                                         Progression.victoryAchieved(Global, Color);
@@ -142,7 +138,6 @@ public class Main {
 
                                                 Thread.sleep(3000);
 
-                                                // Global.playerHealth -= Enemy[i].getDamage();
                                                 Global.setPlayerHealth(Global.getPlayerHealth() - Enemy[i].getDamage());
 
                                                 System.out.println(Color.setColor("yellow",
@@ -156,9 +151,7 @@ public class Main {
                                                 if (Global.getPlayerHealth() > 0) {
                                                         System.out.println(Color.setColor("red",
                                                                         "\nVida atual: " + Global.getPlayerHealth()));
-                                                }
-
-                                                if (Global.getPlayerHealth() <= 0) {
+                                                } else if (Global.getPlayerHealth() <= 0) {
                                                         Progression.gameOver(Global, Color);
                                                         System.exit(0);
                                                 }
@@ -166,7 +159,7 @@ public class Main {
                                                 Hand.fillHand(Deck);
                                         }
 
-                                        // Global.usedCards = 0;
+                                        // Reinicia a quantidade de cartas usadas pelo jogador
                                         Global.setUsedCards(0);
                                 }
 
