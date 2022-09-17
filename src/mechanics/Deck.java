@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Deck {
-  final int CARD_VARIETY = 5;
-  final int CARD_QUANTITY = 7;
+  private final int CARD_VARIETY = 5;
+  private final int CARD_QUANTITY = 7;
 
   private ArrayList<Card> Deck = new ArrayList<>(CARD_QUANTITY);
 
