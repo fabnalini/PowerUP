@@ -20,8 +20,8 @@ OBS: Para uma melhor experiência de jogo, utilize o Visual Studio Code.
 
 - Jogo simples de cartas;
 - Baseado no universo da trilogia Dark Souls;
-- O jogo consiste entre o jogador versus a máquina (sem Inteligência Artificial);
-- O intuito do jogo é maximizar o dano possível por ataque utilizando cartas mágicas que modificam o poder dos cavaleiros.
+- Consiste entre o jogador versus a máquina (sem Inteligência Artificial);
+- Maximizar o dano possível por ataque dos cavaleiros utilizando as cartas mágicas é o intuito do jogo.
 
 ## Batalha
 
