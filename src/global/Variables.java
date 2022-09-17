@@ -4,14 +4,62 @@ import design.ConsoleColor;
 
 public class Variables {
 
-  public int score = 0;
-  public int playerHealth = 50;
-  public int knightQuantity = 5;
-  public int knightPower = 1;
-  public int usedCards = 0;
-  public int finalDamage = knightQuantity * knightPower;
+  private int score = 0;
+  private int playerHealth = 50;
+  private int knightQuantity = 5;
+  private int knightPower = 1;
+  private int usedCards = 0;
+  private int finalDamage = knightQuantity * knightPower;
 
   ConsoleColor Color = new ConsoleColor();
+
+  public int getScore() {
+    return score;
+  }
+
+  public void setScore(int score) {
+    this.score = score;
+  }
+
+  public int getPlayerHealth() {
+    return playerHealth;
+  }
+
+  public void setPlayerHealth(int playerHealth) {
+    this.playerHealth = playerHealth;
+  }
+
+  public int getKnightQuantity() {
+    return knightQuantity;
+  }
+
+  public void setKnightQuantity(int knightQuantity) {
+    this.knightQuantity = knightQuantity;
+  }
+
+  public int getKnightPower() {
+    return knightPower;
+  }
+
+  public void setKnightPower(int knightPower) {
+    this.knightPower = knightPower;
+  }
+
+  public int getUsedCards() {
+    return usedCards;
+  }
+
+  public void setUsedCards(int usedCards) {
+    this.usedCards = usedCards;
+  }
+
+  public int getFinalDamage() {
+    return finalDamage;
+  }
+
+  public void setFinalDamage(int finalDamage) {
+    this.finalDamage = finalDamage;
+  }
 
   public void showGlobalData() {
     System.out.println("\n----------- Informações do jogador -----------");

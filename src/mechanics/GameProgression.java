@@ -96,7 +96,7 @@ public class GameProgression {
 
                 Thread.sleep(3000);
 
-                System.out.println(Color.setColor("green", "\nPontuação final: " + Global.score));
+                System.out.println(Color.setColor("green", "\nPontuação final: " + Global.getScore()));
         }
 
         public void victoryAchieved(Variables Global, ConsoleColor Color) throws InterruptedException {
@@ -133,6 +133,6 @@ public class GameProgression {
 
                 Thread.sleep(3000);
 
-                System.out.println(Color.setColor("green", "\nPontuação final: " + Global.score));
+                System.out.println(Color.setColor("green", "\nPontuação final: " + Global.getScore()));
         }
 }

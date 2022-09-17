@@ -4,26 +4,30 @@ import java.util.ArrayList;
 import global.Variables;
 
 public class Hand {
+    private static final int HAND_SIZE = 7;
 
-    final int HAND_SIZE = 7;
+    public static int getHandSize() {
+        return HAND_SIZE;
+    }
+
     ArrayList<Card> playerHand = new ArrayList<>(HAND_SIZE);
 
     public Hand(Deck Deck) {
-        while (currentHand() < HAND_SIZE) {
+        while (currentHand() < getHandSize()) {
             playerHand.add(Deck.removeCard());
         }
     }
 
     public void fillHand(Deck Deck) {
-        while (currentHand() < HAND_SIZE) {
+        while (currentHand() < getHandSize()) {
             playerHand.add(Deck.removeCard());
         }
     }
 
     public void useCard(int userChoice, Variables Global) {
-        if (Global.usedCards < 3) {
+        if (Global.getUsedCards() < 3) {
             playerHand.remove(chosenCard(userChoice));
-            Global.usedCards++;
+            Global.setUsedCards(Global.getUsedCards() + 1);
         }
     }
 
@@ -40,7 +44,7 @@ public class Hand {
 
         for (int i = 0; i < playerHand.size(); i++) {
             sb.append("(" + (i) + ") ");
-            sb.append(playerHand.get(i).name);
+            sb.append(playerHand.get(i).getName());
 
             if (i < playerHand.size() - 1) {
                 sb.append(", ");

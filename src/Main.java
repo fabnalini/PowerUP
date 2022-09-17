@@ -1,8 +1,7 @@
 import java.util.Scanner;
 
-import design.ConsoleColor;
-import design.Screen;
 import global.Variables;
+import design.*;
 import mechanics.*;
 
 public class Main {
@@ -19,8 +18,7 @@ public class Main {
                 Hand Hand = new Hand(Deck);
                 GameProgression Progression = new GameProgression();
 
-                int currentStage = 0;
-                int userChoice = 0;
+                int currentStage = 0, userChoice = 0;
 
                 Enemy[] Enemy = new Enemy[5];
 
@@ -35,11 +33,10 @@ public class Main {
                 Progression.gameStart(Color);
                 Progression.cardsHaveAppeared(Color);
 
-                //* Loop principal do jogo */
+                // Loop principal do jogo
                 while (currentStage < Enemy.length) {
-                        //* Percorre os n inimigos do jogo */
+                        // Percorre os n inimigos do jogo
                         for (int i = 0; i < Enemy.length; i++) {
-
                                 Global.showGlobalData();
 
                                 System.out.println(
@@ -59,16 +56,16 @@ public class Main {
                                 System.out.println(Color.setColor("green",
                                                 "Poder do <" + Enemy[i].getName() + ">: " + Enemy[i].getDamage()));
 
-                                Thread.sleep(3000);
+                                // Thread.sleep(3000);
 
-                                //* Enquanto o inimigo n possuir vida, realiza o loop */
+                                // Enquanto o inimigo n possuir vida, realiza o loop
                                 while (Enemy[i].getHealth() > 0) {
-                                        //* Enquanto o jogador não utilizar suas 3 cartas, realiza o loop */
-                                        while (Global.usedCards < 3) {
+                                        // Enquanto o jogador não utilizar suas 3 cartas, realiza o loop
+                                        while (Global.getUsedCards() < 3) {
                                                 System.out.println(
                                                                 "\nVocê possui as seguintes cartas em suas mãos: \n"
                                                                                 + Hand);
-
+                                                // Validação de cartas com índices inválidos
                                                 do {
                                                         System.out.print("\nEscolha a carta que deseja utilizar: ");
                                                         userChoice = in.nextInt();
@@ -80,20 +77,22 @@ public class Main {
                                                 } while (userChoice < 0 || userChoice > Hand.currentHand() - 1);
 
                                                 System.out.println("\nVocê utilizou a carta "
-                                                                + Hand.chosenCard(userChoice).name + "!");
-                                                System.out.println("\n" + Hand.chosenCard(userChoice).description);
+                                                                + Hand.chosenCard(userChoice).getName() + "!");
+                                                System.out.println("\n" + Hand.chosenCard(userChoice).getDescription());
 
                                                 Hand.chosenCard(userChoice).useCard(userChoice, Global);
 
                                                 Hand.useCard(userChoice, Global);
 
+                                                System.out.println("Cartas usadas: " + Global.getUsedCards());
+
                                                 Thread.sleep(1000);
                                         }
- 
-                                        Global.showGlobalData();
-                                        //Enemy[i].getHealth() -= Global.finalDamage;
-                                        Enemy[i].setHealth(Enemy[i].getHealth() - Global.finalDamage);
 
+                                        Global.showGlobalData();
+                                        Enemy[i].setHealth(Enemy[i].getHealth() - Global.getFinalDamage());
+
+                                        // Se a vida do inimigo for igual ou menor a 0, finaliza o andar atual
                                         if (Enemy[i].getHealth() <= 0) {
                                                 System.out.println(
                                                                 "\n[!] Você utilizou todas as cartas possíveis e seus cavaleiros golpearam o inimigo.");
@@ -101,15 +100,17 @@ public class Main {
                                                 Thread.sleep(3000);
 
                                                 System.out.println("\n[!] O <" + Enemy[i].getName() + "> sofreu ["
-                                                                + Global.finalDamage + "] de dano!");
+                                                                + Global.getFinalDamage() + "] de dano!");
 
                                                 Thread.sleep(3000);
 
                                                 if (Enemy[4].getHealth() <= 0) {
-                                                        Global.score += Global.finalDamage * 1.5;
-
+                                                        // Global.score += Global.finalDamage * 1.5;
+                                                        Global.setScore(Global.getScore()
+                                                                        + Global.getFinalDamage() * 2);
                                                         Progression.victoryAchieved(Global, Color);
                                                         Screen.gameCredits();
+
                                                         System.exit(0);
                                                 } else {
                                                         if (currentStage == 0) {
@@ -135,26 +136,29 @@ public class Main {
                                                 Thread.sleep(3000);
 
                                                 System.out.println("\n[!] O <" + Enemy[i].getName() + "> sofreu [" +
-                                                                Global.finalDamage
+                                                                Global.getFinalDamage()
                                                                 + "] de dano, mas ainda possui [" + Enemy[i].getHealth()
                                                                 + "] de vida!");
 
                                                 Thread.sleep(3000);
 
-                                                Global.playerHealth -= Enemy[i].getDamage();
+                                                // Global.playerHealth -= Enemy[i].getDamage();
+                                                Global.setPlayerHealth(Global.getPlayerHealth() - Enemy[i].getDamage());
 
-                                                System.out.println(Color.setColor("yellow", "\n[!] O <" + Enemy[i].getName()
-                                                                + "> o ataca, causando ["
-                                                                + Enemy[i].getDamage() + "] de dano ao jogador!"));
+                                                System.out.println(Color.setColor("yellow",
+                                                                "\n[!] O <" + Enemy[i].getName()
+                                                                                + "> o ataca, causando ["
+                                                                                + Enemy[i].getDamage()
+                                                                                + "] de dano ao jogador!"));
 
                                                 Thread.sleep(3000);
 
-                                                if (Global.playerHealth > 0) {
+                                                if (Global.getPlayerHealth() > 0) {
                                                         System.out.println(Color.setColor("red",
-                                                                        "\nVida atual: " + Global.playerHealth));
+                                                                        "\nVida atual: " + Global.getPlayerHealth()));
                                                 }
 
-                                                if (Global.playerHealth <= 0) {
+                                                if (Global.getPlayerHealth() <= 0) {
                                                         Progression.gameOver(Global, Color);
                                                         System.exit(0);
                                                 }
@@ -162,12 +166,13 @@ public class Main {
                                                 Hand.fillHand(Deck);
                                         }
 
-                                        Global.usedCards = 0;
+                                        // Global.usedCards = 0;
+                                        Global.setUsedCards(0);
                                 }
 
-                                Global.score += Global.finalDamage * 1.5;
+                                Global.setScore(Global.getScore() + Global.getFinalDamage() * 2);
 
-                                System.out.println(Color.setColor("green", "\nPontuação atual: " + Global.score));
+                                System.out.println(Color.setColor("green", "\nPontuação atual: " + Global.getScore()));
 
                                 Thread.sleep(3000);
 
@@ -176,7 +181,7 @@ public class Main {
                                 }
                         }
                 }
-
+                // Fecha o scanner ao final do jogo.
                 in.close();
         }
 }

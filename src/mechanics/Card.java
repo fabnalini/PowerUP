@@ -4,11 +4,35 @@ import global.Variables;
 import design.ConsoleColor;
 
 public class Card {
-  public int id;
-  public String name;
-  public String description;
+  private int id;
+  private String name;
+  private String description;
 
   ConsoleColor Color = new ConsoleColor();
+
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
   public Card(int id) {
     this.id = id;
@@ -25,7 +49,7 @@ public class Card {
       case 3:
         this.name = Color.setColor("purple", "Reunir");
         this.description = Color.setColor("purple",
-            "[!] Aumenta o poder de cada cavaleiro baseado na quantidade total. ");
+            "[!] Aumenta o poder de cada cavaleiro baseado na quantidade total de cavaleiros. ");
         break;
       case 4:
         this.name = Color.setColor("red", "Sacrificar");
@@ -60,9 +84,9 @@ public class Card {
   }
 
   public void Curar(Variables Global) {
-    if (Global.knightQuantity >= 4) {
-      Global.playerHealth += 5;
-      Global.knightQuantity -= 1;
+    if (Global.getKnightQuantity() >= 2) {
+      Global.setPlayerHealth(Global.getPlayerHealth() + 5);
+      Global.setKnightQuantity(Global.getKnightQuantity() - 1);
     } else {
       System.out
           .println(Color.setColor("blue", "\n[?] A carta desapareceu de suas mãos ao utilizá-la, mas nada aconteceu."));
@@ -71,28 +95,28 @@ public class Card {
   }
 
   public void Recrutar(Variables Global) {
-    Global.knightQuantity += 2;
+    Global.setKnightQuantity(Global.getKnightQuantity() + 2);
     Global.computeFinalDamage();
   }
 
   private void Reunir(Variables Global) {
-    Global.knightPower += (Global.knightQuantity / 3);
+    Global.setKnightPower(Global.getKnightPower() + (Global.getKnightQuantity() / 3));
     Global.computeFinalDamage();
   }
 
   public void Sacrificar(Variables Global) {
-    if (Global.knightQuantity >= 3) {
-      Global.knightQuantity -= 2;
-      Global.knightPower += Global.knightPower * 1;
+    if (Global.getKnightQuantity() >= 3) {
+      Global.setKnightQuantity(Global.getKnightQuantity() - 2);
+      Global.setKnightPower(Global.getKnightPower() * 1);
     } else {
       System.out
           .println(Color.setColor("blue", "\n[?] A carta desapareceu de suas mãos ao utilizá-la, mas nada aconteceu."));
-      Global.computeFinalDamage();
     }
+    Global.computeFinalDamage();
   }
 
   public void Treinar(Variables Global) {
-    Global.knightPower++;
+    Global.setKnightPower(Global.getKnightPower() + 1);
     Global.computeFinalDamage();
   }
 

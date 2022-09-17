@@ -6,7 +6,7 @@ O projeto só pôde ser realizado com a colaboração dos seguintes participante
 - Ícaro Onofre (@fforellee)
 - Saul Gabriel Castillo Tercero (@UmPastelPraVC)
 
-Agradecimento especial à:
+Agradecimento muito especial à:
 
 - Daniel Antunes (@dannesx)
 
@@ -19,6 +19,7 @@ OBS: Para uma melhor experiência de jogo, utilize o Visual Studio Code.
 ## Resumo
 
 - Jogo simples de cartas;
+- Baseado no universo da trilogia Dark Souls;
 - O jogo consiste entre o jogador versus a máquina (sem Inteligência Artificial);
 - O intuito do jogo é maximizar o dano possível por ataque utilizando cartas mágicas que modificam o poder dos cavaleiros.
 
