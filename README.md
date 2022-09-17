@@ -13,13 +13,15 @@ Agradecimento especial à:
 
 ## Sobre o projeto
 
-`Power UP!` é um jogo de cartas no formato arcade, onde seu objetivo é conquistar os `5` andares do calabouço. Cada andar possui um inimigo a enfrentar, e o jogador deve utilizar seus cavaleiros e suas cartas mágicas para combatê-lo. Quando um inimigo é derrotado, o jogador avança para o próximo andar, onde um inimigo ainda mais poderoso o aguarda!
+`Power UP!` é um jogo de cartas no formato arcade, onde seu objetivo é conquistar os `5` andares do calabouço. Cada andar possui um inimigo a enfrentar, e o jogador deve utilizar seu deck de cavaleiros e cartas mágicas para combatê-lo. Quando um inimigo é derrotado, o jogador avança para o próximo andar, onde um inimigo ainda mais poderoso o aguarda!
+
+OBS: Para uma melhor experiência de jogo, utilize o Visual Studio Code.
 
 ## Resumo
 
 - Jogo simples de cartas;
 - O jogo consiste entre o jogador versus a máquina (sem Inteligência Artificial);
-- O intuito do jogo é maximizar o dano possível por hit utilizando cartas mágicas que modificam o poder dos cavaleiros.
+- O intuito do jogo é maximizar o dano possível por ataque utilizando cartas mágicas que modificam o poder dos cavaleiros.
 
 ## Batalha
 
@@ -43,7 +45,7 @@ Agradecimento especial à:
 ## Cartas `<Object>`
 
 - Existem `5` tipos de cartas diferentes.
-- São `Objects` que possuem ID `int`, nome `String`, descrição `String` e chamam uma magia específica.
+- Uma classe de `Objects` que possuem ID `int`, nome `string`, descrição `string` e chamam uma magia específica.
 - Cada carta altera o andamento do jogo de alguma forma.
 
 ### Tipos
@@ -70,7 +72,7 @@ Agradecimento especial à:
 
 ## Inimigos `<Object>`
 
-Uma classe de `Objects` que possuem nome, vida e poder pré-determinados.
+Uma classe de `Objects` que possuem nome `string`, vida `int` e poder `int` pré-determinados.
 
 ## Andares `<Array>`
 
@@ -80,4 +82,4 @@ Uma classe de `Objects` que possuem nome, vida e poder pré-determinados.
 
 ## Progressão do jogo `<Object>`
 
-Ao progredir naturalmente pelo jogo, o jogador vai acionando certos gatilhos que retornam informações importantes sobre o andamento do jogo.
+- Ao progredir naturalmente pelo jogo, o jogador vai acionando certos triggers que retornam informações importantes sobre o andamento do jogo.
