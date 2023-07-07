@@ -2,9 +2,9 @@
 
 O projeto só pôde ser realizado com a colaboração dos seguintes participantes: 
 
-- Fabio Nalini (@DarkseekerGael)
-- Ícaro Onofre (@fforellee)
-- Saul Gabriel Castillo Tercero (@UmPastelPraVC)
+- Fabio Nalini (@fabnalini)
+- Ícaro Onofre (@icaro-onofre)
+- Saul Gabriel Castillo Tercero (@CastilloSGT)
 
 Agradecimento muito especial à:
 
